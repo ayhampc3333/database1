@@ -2,12 +2,12 @@ package edu.moh.database4a17
 
 
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.tsmem.view.*
 import mydatabase
 
@@ -21,18 +21,34 @@ class cuostom(context: Context, private var objects: ArrayList<Array<String>>) :
         custom.textViewtsmem3.text= "ID:${objects[position][0]}"
         custom.textViewtsmem2.text="name:${objects[position][1]}"
         custom.textViewtsmem.text="Q:${objects[position][2]}"
-
+        mydb=mydatabase(context)
+        var x:String?
         custom.imageViewtsmem.setOnClickListener {
-            mydb=mydatabase(context)
-            var x=objects[position][1]
+             x=objects[position][1]
             p=Product(x)
             mydb.deletproduct(p)
             objects.removeAt(position)
             notifyDataSetChanged()
-            //if (context is MainActivity2) {
-              //  (context as MainActivity2).printData()
-           // }
         }
+        custom.Detailsimage.setOnClickListener {
+            val bulider=AlertDialog.Builder(context)
+            bulider.setTitle("تفاصيل عن المنتج")
+            bulider.setMessage("ID:${objects[position][0]} \n \n name:${objects[position][1]} \n \n Q:${objects[position][2]}")
+            bulider.setPositiveButton("موافق"){_:DialogInterface,_:Int ->
+
+            }
+            val dialog=bulider.create()
+            dialog.show()
+        }
+        x=objects[position][1]
+        if (x=="اكمول"){
+            custom.imageView.setImageResource(R.drawable.acamol)
+        }else if (x=="بنادول"){
+            custom.imageView.setImageResource(R.drawable.panadol)
+        }else{
+            custom.imageView.setImageResource(R.drawable.nophoto)
+        }
+
 
         return custom
     }
