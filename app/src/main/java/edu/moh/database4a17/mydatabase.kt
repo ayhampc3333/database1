@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import edu.moh.database4a17.Product
 
-lateinit var product:Product
+
 class mydatabase(context: Context) : SQLiteOpenHelper(context, mydatabase.DATABASE_NAME, null , mydatabase.DATABASE_VERSION) {
 
     override fun onCreate(p0: SQLiteDatabase?) {

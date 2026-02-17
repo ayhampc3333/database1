@@ -22,9 +22,8 @@ class cuostom(context: Context, private var objects: ArrayList<Array<String>>) :
         custom.textViewtsmem2.text="name:${objects[position][1]}"
         custom.textViewtsmem.text="Q:${objects[position][2]}"
         mydb=mydatabase(context)
-        var x:String?
+        var x=objects[position][1]
         custom.imageViewtsmem.setOnClickListener {
-             x=objects[position][1]
             p=Product(x)
             mydb.deletproduct(p)
             objects.removeAt(position)
@@ -40,7 +39,6 @@ class cuostom(context: Context, private var objects: ArrayList<Array<String>>) :
             val dialog=bulider.create()
             dialog.show()
         }
-        x=objects[position][1]
         var productsimage= mapOf("اكمول" to R.drawable.acamol ,"بنادول" to R.drawable.panadol )
         var imge=productsimage[x]?: R.drawable.nophoto
             custom.imageView.setImageResource(imge)
