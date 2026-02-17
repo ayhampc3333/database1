@@ -25,13 +25,19 @@ class MainActivity : AppCompatActivity() {
     fun add(view: View) {
         val nameProduct=nameproducer.text.toString()
         val quantity=numBox.text.toString()
-        p=Product(nameProduct,quantity.toInt())
         if ( nameproducer.text.isEmpty() || numBox.text.isEmpty()){
             Toast.makeText(this,"يرجى ادخال البيانات بشكل صحيح",Toast.LENGTH_SHORT).show()
         }else {
+            p=Product(nameProduct,quantity.toInt())
+            var makesurename= mydatebase.sarshe(p)
+            if (makesurename.isEmpty()){
                 mydatebase.addproduct(p)
                 numBox.text.clear()
                 nameproducer.text.clear()
+            }else{
+                Toast.makeText(this,"المنتج مسجل مسبقا في قاعدة البيانات",Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
     fun delete(view: View) {
