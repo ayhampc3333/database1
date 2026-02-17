@@ -41,13 +41,10 @@ class cuostom(context: Context, private var objects: ArrayList<Array<String>>) :
             dialog.show()
         }
         x=objects[position][1]
-        if (x=="اكمول"){
-            custom.imageView.setImageResource(R.drawable.acamol)
-        }else if (x=="بنادول"){
-            custom.imageView.setImageResource(R.drawable.panadol)
-        }else{
-            custom.imageView.setImageResource(R.drawable.nophoto)
-        }
+        var productsimage= mapOf("اكمول" to R.drawable.acamol ,"بنادول" to R.drawable.panadol )
+        var imge=productsimage[x]?: R.drawable.nophoto
+            custom.imageView.setImageResource(imge)
+
 
 
         return custom
